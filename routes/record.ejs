@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Canteen Management</title>
+        <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+
+        <link href="style.css" rel="stylesheet">
+      
+    </head>
+    <body>
+       <div class="home-container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Canteen Management</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="/record">Enter Details <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href="/details">Record Details</a>
+                <a class="nav-item nav-link" href="/about">About</a>
+                <a class="nav-item nav-link" href="/reviews">Reviews</a>
+               
+              </div>
+              <span class="navbar-text">
+                <button type="button" class="btn btn-danger">Log Out</button>
+              </span>
+            </div>
+          </nav>
+          <form>
+           
+            <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputEmail4">Enter Food Item 1</label>
+                <input type="text" class="form-control" id="inputEmail4">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputPassword4">Enter Additional Food Items(if any)</label>
+                <input type="text" class="form-control" id="inputPassword4">
+              </div>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInline1" name="Type" class="custom-control-input">
+                <label class="custom-control-label" for="customRadioInline1">Paid</label>
+              </div>
+              <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInline2" name="Type" class="custom-control-input">
+                <label class="custom-control-label" for="customRadioInline2">Not Yet Paid</label>
+              </div>
+           
+        
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label for="inputCity">Total Cost</label>
+                  <input type="number" class="form-control" id="inputCity" placeholder="In Rupees">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="inputCity">Pending Cost(if any)</label>
+                    <input type="number" class="form-control" id="inputCity">
+                  </div>
+              </div>
+            
+            <button type="submit" class="btn btn-primary">Sign in</button>
+          </form>
+       </div>
+              
+    </body>
+   
+</html>
