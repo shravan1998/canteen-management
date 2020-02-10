@@ -20,42 +20,41 @@
                 <a class="nav-item nav-link" href="/record">Enter Details</a>
                 <a class="nav-item nav-link active" href="/details">Record Details <span class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link" href="/about">About</a>
-                <a class="nav-item nav-link" href="/reviews">Reviews</a>
+                
                
               </div>
               <span class="navbar-text">
-                <button type="button" class="btn btn-danger">Log Out</button>
+                <button type="button" class="btn btn-danger" onclick="location.href='/'">Log Out</button>
               </span>
             </div>
           </nav>
           <table class="table">
             <thead class="thead-light">
               <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">Food Item</th>
+                <th scope="col">Additional Food Item(if any)</th>
+                <th scope="col">Paid</th>
+                <th scope="col">Cost</th>
+                <th scope="col">Pending Cost</th>
+                <th scope="col">Tools</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-              </tr>
+             <% records.forEach(function(x) {%>
+              <td><%= x.food_item %> </td>
+              <td><%= x.additional_food_item %> </td>
+              <td><%= x.paid %></td>
+              <td><%= x.cost%></td>
+              <td><%= x.pending_cost%></td>
+              <td>
+                <button type="button" onclick="location.href='/update/<%=x.record_rid%>'" class="btn btn-success">
+                  Update                  
+                </button>
+                <button type="button" onclick="location.href='/delete/<%=x.record_rid%>'" class="btn btn-danger">
+                  Delete
+                </button>
+              </td>
+             <% }); %>  
             </tbody>
           </table>
        </div>
