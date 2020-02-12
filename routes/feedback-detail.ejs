@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Canteen Management</title>
+        <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+
+        <link href="style.css" rel="stylesheet">
+      
+    </head>
+    <body>
+       <div class="home-container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Canteen Management</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <div class="navbar-nav">
+                <a class="nav-item nav-link" href="/record">Enter Details</a>
+                <a class="nav-item nav-link " href="/details">Record Details</a>
+                <a class="nav-item nav-link active" href="/feedbacks">Feedbacks <span class="sr-only">(current)</span></a>
+                
+               
+              </div>
+              <span class="navbar-text">
+                <button type="button" class="btn btn-danger" onclick="location.href='/admin'">Log Out</button>
+              </span>
+            </div>
+          </nav>
+         <% feedback.forEach((x)=>{ %> 
+            <h3><%= x.subject  %> </h3>
+            <h3><%= x.description  %> </h3>
+         <% }); %> 
+       </div>
+              
+    </body>
+   
+</html>

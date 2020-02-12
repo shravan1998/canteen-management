@@ -19,12 +19,12 @@
               <div class="navbar-nav">
                 <a class="nav-item nav-link" href="/record">Enter Details</a>
                 <a class="nav-item nav-link active" href="/details">Record Details <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" href="/about">About</a>
+                <a class="nav-item nav-link" href="/feedbacks">Feedbacks</a>
                 
                
               </div>
               <span class="navbar-text">
-                <button type="button" class="btn btn-danger" onclick="location.href='/'">Log Out</button>
+                <button type="button" class="btn btn-danger" onclick="location.href='/admin'">Log Out</button>
               </span>
             </div>
           </nav>
@@ -33,19 +33,19 @@
               <tr>
                 <th scope="col">Food Item</th>
                 <th scope="col">Additional Food Item(if any)</th>
-                <th scope="col">Paid</th>
-                <th scope="col">Cost</th>
-                <th scope="col">Pending Cost</th>
+                <th scope="col">Cost</th>    
                 <th scope="col">Tools</th>
               </tr>
             </thead>
             <tbody>
+              
              <% records.forEach(function(x) {%>
+              <tr>
               <td><%= x.food_item %> </td>
               <td><%= x.additional_food_item %> </td>
-              <td><%= x.paid %></td>
+              
               <td><%= x.cost%></td>
-              <td><%= x.pending_cost%></td>
+           
               <td>
                 <button type="button" onclick="location.href='/update/<%=x.record_rid%>'" class="btn btn-success">
                   Update                  
@@ -54,6 +54,7 @@
                   Delete
                 </button>
               </td>
+            </tr>
              <% }); %>  
             </tbody>
           </table>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Canteen Management</title>
+        <link href="/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+
+        <link href="/style.css" rel="stylesheet">
+      
+    </head>
+    <body>
+       <div class="home-container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Canteen Management</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <div class="navbar-nav">
+                <a class="nav-item nav-link" href="/menu">Orders</a>
+                <a class="nav-item nav-link active" href="/cart">Cart <span class="sr-only">(current)</span></a>
+
+                <a class="nav-item nav-link" href="/about">About</a>
+                 <a class="nav-item nav-link" href="/feedback">Feedback</a>
+               
+              </div>
+              <span class="navbar-text">
+                <button type="button" class="btn btn-danger" onclick="location.href='/'">Log Out</button>
+              </span>
+            </div>
+          </nav> 
+          <div class="row">
+              
+              <% cart.forEach((x)=>{ %>
+                <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="../image/<%= x.food_file %> " alt="Card image cap" style="height: 10rem;">
+                    <div class="card-body">
+                      <h5 class="card-title">
+                          <%= x.food_item %> 
+                      </h5>
+                      <p class="card-text">
+                        <% if(x.additional_food_item!=0){ %> 
+                         With <%= x.additional_food_item  %> 
+                        <% } %>
+                          <br>
+                          Cost:Rs.<%= x.cost  %> 
+                      </p>
+                      <button type="button" onclick="location.href='/cancel/<%= x.record_rid  %>'"  class="btn btn-danger">Cancel</button>
+                    </div>
+                </div>
+            </div>
+              <% }); %> 
+           
+          </div>
+        
+          </div>
+        </body>
+ </html>

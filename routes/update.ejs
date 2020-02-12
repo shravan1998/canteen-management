@@ -19,12 +19,12 @@
               <div class="navbar-nav">
                 <a class="nav-item nav-link active" href="/record">Enter Details <span class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link" href="/details">Record Details</a>
-                <a class="nav-item nav-link" href="/about">About</a>
+                <a class="nav-item nav-link" href="/feedbacks">Feedbacks</a>
                 
                
               </div>
               <span class="navbar-text">
-                <button type="button" class="btn btn-danger" onclick="location.href='/'">Log Out</button>
+                <button type="button" class="btn btn-danger" onclick="location.href='/admin'">Log Out</button>
               </span>
             </div>
           </nav> 
@@ -40,34 +40,17 @@
                 <input type="text" class="form-control" id="inputPassword4" name="additional_food" value="<%= records.additional_food_item%>">
               </div>
             </div>
-            <% if(records.paid=='paid'){ %> 
-            <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="customRadioInline1" name="paid" class="custom-control-input" value="paid" checked>
-                <label class="custom-control-label" for="customRadioInline1">Paid</label>
-              </div>
-              <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="customRadioInline2" name="paid" class="custom-control-input" value="no">
-                <label class="custom-control-label" for="customRadioInline2">Not Yet Paid</label>
-              </div>
-            <% }else{ %> 
-                <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="customRadioInline1" name="paid" class="custom-control-input" value="paid">
-                    <label class="custom-control-label" for="customRadioInline1">Paid</label>
-                  </div>
-                  <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="customRadioInline2" name="paid" class="custom-control-input" value="no" checked>
-                    <label class="custom-control-label" for="customRadioInline2">Not Yet Paid</label>
-                  </div>
-            <% } %> 
+           
+           
               <div class="form-row">
                 <div class="form-group col-md-4">
                   <label for="inputCity">Total Cost</label>
                   <input type="text" class="form-control" id="inputCity" placeholder="In Rupees" name="cost" value="<%=records.cost  %> ">
                 </div>
                 <div class="form-group col-md-4">
-                    <label for="inputCity">Pending Cost(if any)</label>
-                    <input type="text" class="form-control" id="inputCity" name="pending" value="<%= records.pending_cost  %> ">
-                  </div>
+                  <label for="inputCity">Food File</label>
+                  <input type="file" class="form-control" id="inputCity"  name="image">
+                </div>
               </div>
             
             <button type="submit" class="btn btn-primary">Enter Details</button>
