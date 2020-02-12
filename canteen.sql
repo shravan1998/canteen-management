@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 10, 2020 at 01:16 PM
+-- Generation Time: Feb 12, 2020 at 06:48 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -31,11 +31,39 @@ SET time_zone = "+00:00";
 CREATE TABLE `canteen_records` (
   `food_item` varchar(200) NOT NULL,
   `additional_food_item` varchar(200) DEFAULT NULL,
-  `paid` varchar(200) NOT NULL,
   `cost` int(11) NOT NULL,
-  `pending_cost` int(11) DEFAULT NULL,
-  `record_rid` int(11) NOT NULL
+  `record_rid` int(11) NOT NULL,
+  `food_file` varchar(200) NOT NULL,
+  `uid` int(11) NOT NULL,
+  `cart` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `canteen_records`
+--
+
+INSERT INTO `canteen_records` (`food_item`, `additional_food_item`, `cost`, `record_rid`, `food_file`, `uid`, `cart`) VALUES
+('Biriyani    ', '0', 50, 2, 'Biriyani.jpg', 0, 0),
+('Rice ', 'Kebab', 45, 3, 'Rice.jpg', 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `feedback`
+--
+
+CREATE TABLE `feedback` (
+  `subject` varchar(200) NOT NULL,
+  `descrption` text DEFAULT NULL,
+  `uid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `feedback`
+--
+
+INSERT INTO `feedback` (`subject`, `descrption`, `uid`) VALUES
+('Good', '             ', 2);
 
 -- --------------------------------------------------------
 
@@ -45,15 +73,18 @@ CREATE TABLE `canteen_records` (
 
 CREATE TABLE `login` (
   `user` varchar(200) NOT NULL,
-  `password` varchar(200) NOT NULL
+  `password` varchar(200) NOT NULL,
+  `uid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `login`
 --
 
-INSERT INTO `login` (`user`, `password`) VALUES
-('admin@email.com', 'password');
+INSERT INTO `login` (`user`, `password`, `uid`) VALUES
+('admin@email.com', 'password', 1),
+('contact@email.com', 'password', 2),
+('contact2@email.com', 'password', 3);
 
 --
 -- Indexes for dumped tables
@@ -66,6 +97,12 @@ ALTER TABLE `canteen_records`
   ADD PRIMARY KEY (`record_rid`);
 
 --
+-- Indexes for table `login`
+--
+ALTER TABLE `login`
+  ADD PRIMARY KEY (`uid`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -73,7 +110,13 @@ ALTER TABLE `canteen_records`
 -- AUTO_INCREMENT for table `canteen_records`
 --
 ALTER TABLE `canteen_records`
-  MODIFY `record_rid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `record_rid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `login`
+--
+ALTER TABLE `login`
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
