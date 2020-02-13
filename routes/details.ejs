@@ -33,7 +33,8 @@
               <tr>
                 <th scope="col">Food Item</th>
                 <th scope="col">Additional Food Item(if any)</th>
-                <th scope="col">Cost</th>    
+                <th scope="col">Cost</th> 
+                <th scope="col">Ordered</th>
                 <th scope="col">Tools</th>
               </tr>
             </thead>
@@ -45,6 +46,13 @@
               <td><%= x.additional_food_item %> </td>
               
               <td><%= x.cost%></td>
+              <td>
+                <% if(x.cart == 0){ %>
+                  No
+                  <% }else{ %>
+                    Yes
+                    <% }%>  
+              </td>
            
               <td>
                 <button type="button" onclick="location.href='/update/<%=x.record_rid%>'" class="btn btn-success">
