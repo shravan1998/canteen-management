@@ -67,6 +67,19 @@ app.get('/cancel/:id',(req,res)=>{
     });
     return res.redirect('/cart');
 });
+app.get('/ordered/:id',(req,res)=>{
+    var id=req.params.id;
+    console.log(id);
+    var sql1="UPDATE `canteen_records` SET `uid`=0,`cart`=0 WHERE `record_rid`="+id;
+    connection.query(sql1,(err)=>{
+        if(err){
+            console.log(err);
+        }else{
+            console.log("Removed");
+        }
+    });
+    return res.redirect('/details');
+});
 app.get('/menu',function(req,res){
     connection.query("SELECT * FROM `canteen_records`",(err,results,fields)=>{
         if(err){
@@ -129,7 +142,7 @@ app.post('/register',(req,res)=>{
                     
                 });
     
-                var sql1 = "SELECT uid FROM login WHERE `user`="+email; 
+                var sql1 = "SELECT uid FROM login WHERE `user`='"+email+"'"; 
                 connection.query(sql1,function(err,results,fields)
                 {
                     if(!err){
@@ -221,12 +234,12 @@ app.post('/update/:id',(req,res)=>{
     console.log(req.params.id);
     var food=req.body.food;
     var additional_food = req.body.additional_food;
-   
+    var image = req.body.image;
     var cost = req.body.cost;
-    var image =req.body.image;
+    console.log(req.body.image);
     var id = req.params.id;
-    console.log(image);
-    var sql = "UPDATE `canteen_records` SET `food_item`='"+food+"',`additional_food_item`='"+additional_food+"',`cost`="+cost+",`food_file`='"+image+"' WHERE `record_rid`="+id;
+    if(image==undefined||image==null||image==''){
+    var sql = "UPDATE `canteen_records` SET `food_item`='"+food+"',`additional_food_item`='"+additional_food+"',`cost`="+cost+" WHERE `record_rid`="+id;
     connection.query(sql,(err)=>{
         if(err){
             console.log(err);
@@ -234,6 +247,16 @@ app.post('/update/:id',(req,res)=>{
             console.log("Updated");
         }
     });
+    }else{
+        var sql = "UPDATE `canteen_records` SET `food_item`='"+food+"',`additional_food_item`='"+additional_food+"',`cost`="+cost+",`food_file`='"+image+"' WHERE `record_rid`="+id;
+    connection.query(sql,(err)=>{
+        if(err){
+            console.log(err);
+        }else{
+            console.log("Updated");
+        }
+    });
+    }
     return res.redirect("/details");
 });
 

@@ -28,7 +28,7 @@
               </span>
             </div>
           </nav>
-          <table class="table">
+          <table class="table table-light">
             <thead class="thead-light">
               <tr>
                 <th scope="col">Food Item</th>
@@ -55,6 +55,9 @@
               </td>
            
               <td>
+                <% if(x.cart !=0){ %>
+                  <button type="button" onclick="location.href='/ordered/<%= x.record_rid  %>'"  class="btn btn-primary">Ordered</button>
+                  <% } %> 
                 <button type="button" onclick="location.href='/update/<%=x.record_rid%>'" class="btn btn-success">
                   Update                  
                 </button>
