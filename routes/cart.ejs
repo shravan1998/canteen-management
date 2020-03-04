@@ -26,6 +26,10 @@
               </div>
               <span class="navbar-text">
                 <button type="button" class="btn btn-danger" onclick="location.href='/'">Log Out</button>
+                <% cart.forEach((x)=>{ %>
+                  <button type="button" class="btn btn-primary" onclick="location.href='/bill/<%= x.uid %>'">Bill</button>
+                <% }); %> 
+                
               </span>
             </div>
           </nav> 
@@ -45,11 +49,31 @@
                         <% } %>
                           <br>
                           Cost:Rs.<%= x.cost  %> 
+                          <br>
+                          Quantity:<%= x.quantity  %>
+                          <br>
+                          Total:Rs.<%= x.cost*x.quantity  %> 
+                          <form method="POST" action="/rating/<%= x.record_rid %> ">
+                          <div class="form-group">
+                            <label for="exampleFormControlSelect1">Rating</label>
+                            <select class="form-control" id="exampleFormControlSelect1" name="rating">
+                              <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                            </select>
+                          </div>
+                          <button type="submit" class="btn btn-primary">Rate</button>
+                        </form>
                       </p>
                       <button type="button" onclick="location.href='/cancel/<%= x.record_rid  %>'"  class="btn btn-danger">Cancel</button>
                     </div>
                 </div>
             </div>
+            
+             
+          
               <% }); %> 
            
           </div>

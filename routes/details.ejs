@@ -35,6 +35,8 @@
                 <th scope="col">Additional Food Item(if any)</th>
                 <th scope="col">Cost</th> 
                 <th scope="col">Ordered</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Rating</th>
                 <th scope="col">Tools</th>
               </tr>
             </thead>
@@ -53,7 +55,8 @@
                     Yes
                     <% }%>  
               </td>
-           
+              <td><%= x.quantity%></td>
+              <td><%= x.rating %></td>
               <td>
                 <% if(x.cart !=0){ %>
                   <button type="button" onclick="location.href='/ordered/<%= x.record_rid  %>'"  class="btn btn-primary">Ordered</button>

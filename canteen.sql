@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 12, 2020 at 06:48 PM
+-- Generation Time: Mar 04, 2020 at 04:49 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -35,16 +35,18 @@ CREATE TABLE `canteen_records` (
   `record_rid` int(11) NOT NULL,
   `food_file` varchar(200) NOT NULL,
   `uid` int(11) NOT NULL,
-  `cart` int(11) NOT NULL DEFAULT 0
+  `cart` int(11) NOT NULL DEFAULT 0,
+  `quantity` int(11) NOT NULL DEFAULT 0,
+  `rating` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `canteen_records`
 --
 
-INSERT INTO `canteen_records` (`food_item`, `additional_food_item`, `cost`, `record_rid`, `food_file`, `uid`, `cart`) VALUES
-('Biriyani    ', '0', 50, 2, 'Biriyani.jpg', 0, 0),
-('Rice ', 'Kebab', 45, 3, 'Rice.jpg', 0, 0);
+INSERT INTO `canteen_records` (`food_item`, `additional_food_item`, `cost`, `record_rid`, `food_file`, `uid`, `cart`, `quantity`, `rating`) VALUES
+('Biriyani          ', '', 50, 2, 'Biriyani.jpg', 2, 1, 3, 5),
+('Rice  ', 'Kebab', 45, 3, 'Rice.jpg', 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -55,15 +57,16 @@ INSERT INTO `canteen_records` (`food_item`, `additional_food_item`, `cost`, `rec
 CREATE TABLE `feedback` (
   `subject` varchar(200) NOT NULL,
   `descrption` text DEFAULT NULL,
-  `uid` int(11) NOT NULL
+  `uid` int(11) NOT NULL,
+  `name` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `feedback`
 --
 
-INSERT INTO `feedback` (`subject`, `descrption`, `uid`) VALUES
-('Good', '             ', 2);
+INSERT INTO `feedback` (`subject`, `descrption`, `uid`, `name`) VALUES
+('Excellent', '             ', 2, 'Contact');
 
 -- --------------------------------------------------------
 
@@ -74,17 +77,23 @@ INSERT INTO `feedback` (`subject`, `descrption`, `uid`) VALUES
 CREATE TABLE `login` (
   `user` varchar(200) NOT NULL,
   `password` varchar(200) NOT NULL,
-  `uid` int(11) NOT NULL
+  `uid` int(11) NOT NULL,
+  `name` varchar(200) NOT NULL,
+  `contact` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `login`
 --
 
-INSERT INTO `login` (`user`, `password`, `uid`) VALUES
-('admin@email.com', 'password', 1),
-('contact@email.com', 'password', 2),
-('contact2@email.com', 'password', 3);
+INSERT INTO `login` (`user`, `password`, `uid`, `name`, `contact`) VALUES
+('admin@email.com', 'password', 1, 'Admin', '888888888'),
+('contact@email.com', 'password', 2, 'Contact', '9999999'),
+('contact2@email.com', 'password', 3, 'Contact 2', '5555555'),
+('contact3@email.com', 'password', 4, 'Contact 3', '66666666'),
+('contact5@email.com', 'password', 5, 'Contact 5', '33333333'),
+('contact6@email.com', 'password', 6, 'Contact 6', '6666666666'),
+('contact8@email.com', 'password', 7, 'Contact 8', '9999999999');
 
 --
 -- Indexes for dumped tables
@@ -116,7 +125,7 @@ ALTER TABLE `canteen_records`
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

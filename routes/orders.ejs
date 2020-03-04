@@ -45,7 +45,12 @@
                           <br>
                           Cost:Rs.<%= x.cost  %> 
                       </p>
-                      <button onclick="location.href='/add-to-cart/<%= x.record_rid %>'" class="btn btn-primary">Add To Cart</button>
+                      <form method="POST" action="/add-to-cart/<%= x.record_rid %>">
+                        <label for="quantity">Quantity</label>
+                        <input type="number" class="form-control" name="quantity" id="quantity">
+                        <button type="submit" class="btn btn-primary">Add To Cart</button>
+                      </form>
+                      
                     </div>
                 </div>
             </div>
