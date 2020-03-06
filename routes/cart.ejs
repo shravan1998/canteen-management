@@ -26,10 +26,11 @@
               </div>
               <span class="navbar-text">
                 <button type="button" class="btn btn-danger" onclick="location.href='/'">Log Out</button>
-                <% cart.forEach((x)=>{ %>
+                <% cart.forEach((x,index)=>{ %> 
+                  <% if(index==0){ %> 
                   <button type="button" class="btn btn-primary" onclick="location.href='/bill/<%= x.uid %>'">Bill</button>
+                  <% } %> 
                 <% }); %> 
-                
               </span>
             </div>
           </nav> 

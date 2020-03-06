@@ -33,11 +33,13 @@ app.get('/forgot-password',function(req,res){
 
 app.get('/cart',(req,res)=>{
     var user_rid = localStorage.getItem('uid');
-    var sql1 ="SELECT * FROM `canteen_records` WHERE `cart`<>0 AND `quantity`>0 AND `uid`="+user_rid
+    var sql1 ="SELECT * FROM `canteen_records` WHERE `cart`<>0 AND `quantity`>0 AND `uid`="+user_rid;
+    
     connection.query(sql1,(err,results,fields)=>{
         if(err){
             console.log(err);
-        }else{
+           
+        }else {
             console.log(results);
             res.render('routes/cart',{cart:results});
         }
@@ -382,37 +384,41 @@ app.post('/rating/:id',(req,res)=>{
 
 app.get('/bill/:id',(req,res)=>{
     var id = req.params.id;
-    let sql = "SELECT *,SUM(`cost`*`quantity`) AS `sum_cost` FROM `canteen_records` WHERE `uid`="+id+" AND `cart`<>"+0;
+    let sql = "SELECT * FROM `canteen_records` WHERE `uid`="+id+" AND `cart`<>0";
     connection.query(sql,(err,results)=>{
         if(err){
             console.log(err);
         }
         else{
-            res.render('routes/bill',{records:results},(err,data)=>{
-            if(err){
-                console.log(err);
-            }
-            else{
-                let options = {
-                    "height": "11.25in",
-                    "width": "8.5in",
-                    "header": {
-                        "height": "20mm"
-                    },
-                    "footer": {
-                        "height": "20mm",
-                    },
-                };
-                pdf.create(data, options).toFile("bill.pdf", function (err, data) {
-                    if (err) {
-                        res.send(err);
-                    } else {
-                        return res.redirect("/cart");
-                    }
+        let sql1="SELECT SUM(`quantity`*`cost`) AS `sum_cost` FROM `canteen_records` WHERE `uid`="+id+" AND `cart`<>0";
+        connection.query(sql1,(err,results1)=>{
+            res.render('routes/bill',{records:results,sum:results1},(err,data)=>{
+                if(err){
+                    console.log(err);
+                }
+                else{
+                    let options = {
+                        "height": "11.25in",
+                        "width": "8.5in",
+                        "header": {
+                            "height": "20mm"
+                        },
+                        "footer": {
+                            "height": "20mm",
+                        },
+                    };
+                    pdf.create(data, options).toFile("bill.pdf", function (err, data) {
+                        if (err) {
+                            res.send(err);
+                        } else {
+                            return res.redirect("/cart");
+                        }
+                    });
+                }
+                   
                 });
-            }
-               
-            });
+        });
+            
            
         }
     });
